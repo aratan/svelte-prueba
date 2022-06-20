@@ -19,12 +19,13 @@
 </script>
 
 <!-- HTML -->
-<input placeholder="Buscar pelicula" {value} on:input={handlerInput} />
+<input placeholder="Buscar pelicula..." {value} on:input={handlerInput} />
 <p>Encontradas: {datos.length}</p>
 
-{#each datos as title, i}
-    <p>{title.Title}</p>
-    <img src={title.Poster} alt="" />
+<!--desestructuracion y bucle-->
+{#each datos as {Title,Poster,Year}}
+    <p>{Title} - {Year}</p>
+    <img src={Poster} alt="{Title}" />
     <br />
 {/each}
 
