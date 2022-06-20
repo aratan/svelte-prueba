@@ -1,21 +1,45 @@
 <script>
-  import logo from './assets/svelte.png'
-  import Counter from './lib/Counter.svelte'
+  import Input from "./input.svelte";
+  import logo from "./assets/svelte.png";
+  import Counter from "./lib/Counter.svelte";
+
+  //console.log(gun.get('/'));
+
   var a = "mono";
+  var n = 1;
+  function cambiaNombre() {
+    a = "xxxxa";
+    n++;
+  }
+
+  // reactive
+  $: {
+    if (n > 9) {
+      n = 9;
+    }
+  }
 </script>
 
 <main>
   <img src={logo} alt="Svelte Logo" />
-  <h1>Hola world! {a}</h1>
+  <h1>Hola world! {a} {n * 1}</h1>
 
+  {#if n < 5}
+    <strong> menos de 5</strong>
+  {:else if n > 5}
+    <strong> n mas 5</strong>
+  {/if}
+  <!--fin condicion -->
+
+  <button on:click={cambiaNombre}> cambiar nombre </button>
   <Counter />
-
+  <Input />
 </main>
 
 <style>
   :root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   }
 
   main {
@@ -30,7 +54,7 @@
   }
 
   h1 {
-    color: #ff3e00;
+    color: #ff0040;
     text-transform: uppercase;
     font-size: 4rem;
     font-weight: 100;
